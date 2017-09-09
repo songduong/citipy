@@ -102,13 +102,15 @@ weatherDF2=weatherDF.drop('Citycode', axis=1).drop('City', axis=1).drop('Country
 #loop to print out charts and analysis
 for x in weatherDF2:
     if weatherDF2[x] is not weatherDF2['Latitude']:
+        fig=plt.figure()
         plt.scatter(weatherDF2.Latitude, weatherDF2[x], s=50, edgecolor='steelblue', c='lightblue')
         plt.title(f'%s vs. Latitude' % (x.title()))
         plt.ylabel("Latitude")
         plt.xlabel(x.title())
-        plt.savefig(x+"vs. Latitude.png")
         PR=pearsonr(weatherDF.Latitude, weatherDF2[x])
+        plt.savefig(x + "vs. Latitude.png")
         plt.show()
+ 
         def printanalysis(z,w):
             if z >= 0.5:
                 description = "a strong and positive"
@@ -130,8 +132,8 @@ for x in weatherDF2:
             elif w < 0.05:
                 result ="a significant"
                 null=f"We are able to reject the null hypotheses, and conclude that the higher the latitude, the %s the %s." % (direction, x)
-
             print(f'There is %s correlation between %s and latitude, r=%s, n=%s, p=%s. Overall, there is %s correlation between the two variables.' % (result, x, round(PR[0],3), len(weatherDF), round(PR[1],3), description))
             print("")
             print(null)
         printanalysis(PR[0],PR[1])
+
