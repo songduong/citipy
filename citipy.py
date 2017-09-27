@@ -14,7 +14,7 @@ import pandas as pd
 import requests as req
 from scipy.stats.stats import pearsonr
 import time
-API="0b96cdf195c71f1105e53f361f7e2b27"
+API="INSERT API KEY"
 owm = pyowm.OWM(API)
 url="http://api.openweathermap.org/data/2.5/weather?q="
 units="&units=imperial"
